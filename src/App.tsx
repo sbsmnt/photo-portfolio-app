@@ -1,26 +1,23 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import { Portfolio } from './Portfolio/Portfolio';
+import { Footer } from './shared/Footer/Footer';
+import { Header } from './shared/Header/Header';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	const categories: string[] = ['urban', 'street', 'landscape'];
+	const [gallery, setGallery] = useState(categories[0]);
+
+	const handleGalleryChange = (gallery: string) => {
+		setGallery(gallery);
+	};
+
+	return (
+		<>
+			<Header categories={categories} changeGallery={handleGalleryChange} />
+			<Portfolio gallery={gallery} />
+			<Footer />
+		</>
+	);
 }
 
 export default App;
